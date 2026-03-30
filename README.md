@@ -93,7 +93,7 @@ I focus on solving real-world problems by developing high-performance, user-frie
 ---
 
 ## 🌐 Live Portfolio
-👉 https://ritesh-fullstack.vercel.app/
+👉 https://ritesh-portfolio-2026.vercel.app/
 
 ---
 
