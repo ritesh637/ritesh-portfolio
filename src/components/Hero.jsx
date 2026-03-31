@@ -133,7 +133,7 @@ const Hero = () => {
               {/* Description */}
               <div className="w-full max-w-3xl">
                 <p className="text-sm sm:text-base md:text-lg text-medium-gray leading-relaxed">
-                  I'm Ritesh, a Full Stack Developer with 1 year of experience building fast, scalable, and user-friendly web applications using the MERN Stack (MongoDB, Express.js, React.js, Node.js) and TypeScript. I specialize in building responsive front-end interfaces with React.js and Tailwind CSS, designing secure backend systems, and integrating solutions like Razorpay, RBAC, and REST APIs. I focus on converting business ideas into functional products, solving real-world problems through efficient coding, and continuously learning new technologies to improve performance, scalability, and user experience.
+                  I'm Ritesh, a Full Stack Developer with 2 years of experience building fast, scalable, and user-friendly web applications using the MERN Stack (MongoDB, Express.js, React.js, Node.js) and TypeScript. I specialize in building responsive front-end interfaces with React.js and Tailwind CSS, designing secure backend systems, and integrating solutions like Razorpay, RBAC, and REST APIs. I focus on converting business ideas into functional products, solving real-world problems through efficient coding, and continuously learning new technologies to improve performance, scalability, and user experience.
                 </p>
               </div>
             </div>
