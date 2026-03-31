@@ -200,7 +200,7 @@ const Contact = () => {
   ]
 
   return (
-    <section id="contact" className="py-12 sm:py-16 md:py-20 lg:py-24 pb-28 sm:pb-32 bg-pure-white relative overflow-hidden">
+    <section id="contact" className="py-12 sm:py-16 md:py-20 lg:py-24 pb-20 sm:pb-32 bg-pure-white relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute top-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-gradient-to-br from-[#00786f]/5 to-transparent horizontal-full opacity-30 -translate-x-1/2 -translate-y-1/2"></div>
       <div className="absolute bottom-0 right-0 w-80 sm:w-96 h-80 sm:h-96 bg-gradient-to-tl from-[#00786f]/5 to-transparent horizontal-full opacity-30 translate-x-1/2 translate-y-1/2"></div>
