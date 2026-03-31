@@ -32,7 +32,7 @@ const Navigation = ({ activeSection }) => {
                 <button
                   onClick={() => scrollToSection(item.id)}
                   className={`
-                    px-4 py-3 horizontal-full text-sm font-medium smooth-transition
+                    px-4 py-3 rounded-full text-sm font-medium smooth-transition
                     flex items-center gap-2 relative overflow-hidden
                     ${isActive 
                       ? 'bg-[#00786f] text-white shadow-lg scale-110' 
