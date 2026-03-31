@@ -19,18 +19,18 @@ const About = () => {
             <div className="space-y-4 sm:space-y-5 md:space-y-6 text-medium-gray leading-relaxed">
               
               <p className="text-sm sm:text-base lg:text-lg">
-                I am a <strong className="text-[#00786f]">Full Stack Developer with 1+ year of experience</strong> working with the MERN stack and TypeScript. 
+                I am a <strong className="text-[#00786f]">Full Stack Developer with 2+ year of Experience</strong> working with the MERN stack and TypeScript. 
                 I have professional experience at <strong className="text-[#00786f]">DB Skills (Chennai)</strong> and <strong className="text-[#00786f]">Yodiso India Pvt Ltd (Mumbai)</strong>, 
                 where I built scalable and user-friendly web applications for real-world business use cases.
               </p>
 
               <p className="text-sm sm:text-base lg:text-lg">
-                I specialize in developing <strong className="text-[#00786f]">REST APIs, role-based authentication (RBAC), and payment integrations like Razorpay</strong>. 
+                I specialize in developing <strong className="text-[#00786f]">REST APIs, role-based authentication (RBAC), and Payment integrations like Razorpay</strong>. 
                 I have also worked on performance optimization, reducing API response time significantly and improving user engagement through clean UI/UX.
               </p>
 
               <p className="text-sm sm:text-base lg:text-lg">
-                My experience includes building complete systems such as <strong className="text-[#00786f]">coworking management platforms, CRM systems, and admin dashboards</strong>. 
+                My experience includes building complete systems such as <strong className="text-[#00786f]">Coworking Management Platforms, CRM Systems, and Admin Dashboards</strong>. 
                 I enjoy solving real-world problems, writing clean and maintainable code, and continuously learning new technologies to build high-performance applications.
               </p>
 

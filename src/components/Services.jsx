@@ -60,12 +60,13 @@ const servicesData = [
 
 const Services = () => {
   return (
-    <section id="services" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-slate-50 min-h-screen">
+    <section id="services" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-white min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         <div className="text-center mb-10 sm:mb-12 md:mb-16 lg:mb-20">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal mb-4 sm:mb-5 md:mb-6 capitalize font-serif">
             Services <span className="text-[#00786f]">I Offer</span>
           </h2>
+          <div className="w-20 sm:w-24 h-1 bg-[#00786f] mx-auto mb-6 sm:mb-8"></div>
           <p className="text-sm sm:text-base text-medium-gray max-w-2xl mx-auto px-4 sm:px-6">
             I provide end-to-end development services, from designing responsive UIs to 
             building scalable backends and deploying production-ready web applications.

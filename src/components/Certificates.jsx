@@ -43,7 +43,7 @@ const Certificates = () => {
   return (
     <section 
       id="certificates" 
-      className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-br from-gray-50 via-white to-gray-100 relative overflow-hidden"
+      className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-br via-white to-gray-100 relative overflow-hidden"
     >
       {/* Decorative background elements */}
       <div className="absolute top-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-gradient-to-br from-[#00786f]/5 to-transparent horizontal-full opacity-30 -translate-x-1/2 -translate-y-1/2"></div>
