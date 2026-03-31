@@ -79,7 +79,7 @@ const Services = () => {
               className="bg-white horizontal-xl p-8 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] hover:shadow-lg transition-all duration-300 relative flex flex-col border-b-[3px] border-[#00786f]"
             >
               {service.popular && (
-                <div className="absolute top-4 right-4 bg-[#00786f] text-white text-[10px] uppercase font-bold tracking-wider px-3 py-1.5 horizontal-full">
+                <div className="absolute top-4 right-4 bg-red-500 text-white text-[10px] uppercase font-bold tracking-wider px-3 py-1.5 horizontal-full">
                   Most Popular
                 </div>
               )}
