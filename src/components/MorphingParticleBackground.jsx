@@ -1,4 +1,4 @@
-import React, { useRef, useMemo } from 'react'
+import React, { useRef, useMemo, useState, useEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
@@ -150,13 +150,56 @@ const SecondaryParticles = ({ count = 150 }) => {
   )
 }
 
+// Responsive camera controller
+const ResponsiveCameraController = ({ isMobile, isTablet }) => {
+  useFrame(({ camera, clock }) => {
+    const time = clock.getElapsedTime()
+    
+    // Responsive camera adjustments
+    const baseZ = isMobile ? 16 : isTablet ? 18 : 20
+    const baseY = isMobile ? 7 : isTablet ? 8 : 9
+    const cameraX = isMobile ? 0.6 : isTablet ? 0.8 : 1
+    const cameraYVariation = isMobile ? 0.3 : isTablet ? 0.35 : 0.4
+    const cameraZVariation = isMobile ? 1 : isTablet ? 1.2 : 1.5
+    
+    camera.position.x = Math.sin(time * 0.03) * cameraX
+    camera.position.y = baseY + Math.sin(time * 0.04) * cameraYVariation
+    camera.position.z = baseZ + Math.cos(time * 0.05) * cameraZVariation
+    camera.lookAt(0, 0, 0)
+  })
+  return null
+}
+
 const MorphingParticleBackground = () => {
+  const [isMobile, setIsMobile] = useState(false)
+  const [isTablet, setIsTablet] = useState(false)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768)
+      setIsTablet(window.innerWidth >= 768 && window.innerWidth < 1024)
+    }
+
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  // Responsive configuration
+  const particleConfig = isMobile 
+    ? { gridCount: 35, gridSpacing: 0.9, secondaryCount: 80 }
+    : isTablet 
+    ? { gridCount: 42, gridSpacing: 0.87, secondaryCount: 120 }
+    : { gridCount: 50, gridSpacing: 0.85, secondaryCount: 160 }
+
+  const fov = isMobile ? 85 : isTablet ? 80 : 75
+
   return (
     <div className="absolute inset-0 w-full h-full overflow-hidden" style={{zIndex: 0}}>
       <Canvas
         camera={{ 
           position: [0, 9, 20], 
-          fov: 75,
+          fov: fov,
           near: 0.1, 
           far: 1000 
         }}
@@ -165,27 +208,17 @@ const MorphingParticleBackground = () => {
           height: '100%',
           background: 'transparent'
         }}
+        dpr={[1, Math.min(window.devicePixelRatio, 2)]}
       >
         <ambientLight intensity={0.25} />
         <directionalLight position={[7, 12, 8]} intensity={0.2} />
         <directionalLight position={[-5, 10, -5]} intensity={0.1} />
-        <ParticleGrid count={50} spacing={0.85} />
-        <SecondaryParticles count={160} />
-        <CameraController />
+        <ParticleGrid count={particleConfig.gridCount} spacing={particleConfig.gridSpacing} />
+        <SecondaryParticles count={particleConfig.secondaryCount} />
+        <ResponsiveCameraController isMobile={isMobile} isTablet={isTablet} />
       </Canvas>
     </div>
   )
-}
-
-const CameraController = () => {
-  useFrame(({ camera, clock }) => {
-    const time = clock.getElapsedTime()
-    camera.position.x = Math.sin(time * 0.03) * 1
-    camera.position.y = 9 + Math.sin(time * 0.04) * 0.4
-    camera.position.z = 20 + Math.cos(time * 0.05) * 1.5
-    camera.lookAt(0, 0, 0)
-  })
-  return null
 }
 
 export default MorphingParticleBackground

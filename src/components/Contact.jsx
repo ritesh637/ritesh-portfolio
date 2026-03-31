@@ -170,69 +170,81 @@ const Contact = () => {
 
   const contactInfo = [
     {
-      icon: <FaWhatsapp size={16} className="lg:hidden" />,
-      iconLg: <FaWhatsapp size={20} className="hidden lg:block" />,
+      icon: <FaWhatsapp size={18} />,
       title: 'WhatsApp',
       value: '+91 7707076831',
-      link: 'https://wa.me/917077076831'
+      link: 'https://wa.me/917077076831',
+      color: '#25D366'
     },
     {
-      icon: <FaEnvelope size={16} className="lg:hidden" />,
-      iconLg: <FaEnvelope size={20} className="hidden lg:block" />,
+      icon: <FaEnvelope size={18} />,
       title: 'Email',
       value: 'mneshk480@gmail.com',
-      link: 'mailto:mneshk480@gmail.com'
+      link: 'mailto:mneshk480@gmail.com',
+      color: '#EA4335'
     },
     {
-      icon: <FaMapMarkerAlt size={16} className="lg:hidden" />,
-      iconLg: <FaMapMarkerAlt size={20} className="hidden lg:block" />,
+      icon: <FaMapMarkerAlt size={18} />,
       title: 'Location',
       value: 'Mumbai, Maharashtra, India',
-      link: '#'
+      link: '#',
+      color: '#00786f'
     },
     {
-      icon: <FaLinkedin size={16} className="lg:hidden" />,
-      iconLg: <FaLinkedin size={20} className="hidden lg:block" />,
+      icon: <FaLinkedin size={18} />,
       title: 'LinkedIn',
       value: 'ritesh-kumar-goswami',
-      link: 'https://www.linkedin.com/in/ritesh-kumar-goswami-b56a5b208/'
+      link: 'https://www.linkedin.com/in/ritesh-kumar-goswami-b56a5b208/',
+      color: '#0A66C2'
     }
   ]
 
   return (
-    <section id="contact" className="py-20 bg-pure-white relative">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+    <section id="contact" className="py-12 sm:py-16 md:py-20 lg:py-24 pb-28 sm:pb-32 bg-pure-white relative overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute top-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-gradient-to-br from-[#00786f]/5 to-transparent horizontal-full opacity-30 -translate-x-1/2 -translate-y-1/2"></div>
+      <div className="absolute bottom-0 right-0 w-80 sm:w-96 h-80 sm:h-96 bg-gradient-to-tl from-[#00786f]/5 to-transparent horizontal-full opacity-30 translate-x-1/2 translate-y-1/2"></div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 relative z-10">
         {/* Header */}
-        <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="font-serif text-5xl md:text-6xl font-bold text-charcoal mb-6">
+        <div className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16 animate-fade-in-up">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-charcoal mb-3 sm:mb-4 md:mb-6 leading-tight">
             Let's Work Together
           </h2>
-          <p className="text-xl text-medium-gray max-w-2xl mx-auto leading-relaxed">
+          <div className="w-20 sm:w-24 h-1 bg-[#00786f] mx-auto mb-4 sm:mb-6 md:mb-8"></div>
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-medium-gray max-w-2xl mx-auto px-4 leading-relaxed">
             Have a project in mind? I'd love to hear about it.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 md:gap-10 lg:gap-12 items-start">
           {/* Contact Info - Left Side */}
           <div className="lg:col-span-5 animate-fade-in-up">
-            {/* Mobile: 2x2 Grid, Desktop: Vertical Stack */}
-            <div className="grid grid-cols-2 lg:grid-cols-1 gap-4 lg:gap-6 contact-info-grid">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-4 lg:gap-5">
               {contactInfo.map((info, index) => (
                 <a
                   key={index}
                   href={info.link}
-                  className="contact-info-card flex flex-col lg:flex-row items-center lg:items-start text-center lg:text-left gap-3 lg:gap-4 p-4 lg:p-6 bg-white/80 backdrop-blur-sm horizontal-xl lg:horizontal-2xl border border-light-gray/50 card-hover group"
+                  className="group flex items-center gap-3 sm:gap-4 p-3 sm:p-4 lg:p-5 bg-white/80 backdrop-blur-sm horizontal-xl border border-light-gray/30 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
                   target={info.link.startsWith('http') ? '_blank' : '_self'}
                   rel={info.link.startsWith('http') ? 'noopener noreferrer' : ''}
+                  style={{ textDecoration: 'none' }}
                 >
-                  <div className="contact-icon w-10 h-10 lg:w-14 lg:h-14 bg-[#00786f] text-white horizontal-lg lg:horizontal-xl flex items-center justify-center group-hover:scale-110 smooth-transition flex-shrink-0">
+                  <div 
+                    className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 horizontal-full flex items-center justify-center transition-all duration-300 group-hover:scale-110 flex-shrink-0"
+                    style={{ backgroundColor: `${info.color}15`, color: info.color }}
+                  >
                     {info.icon}
-                    {info.iconLg}
                   </div>
-                  <div className="min-w-0">
-                    <div className="font-semibold text-charcoal text-sm lg:text-lg contact-title">{info.title}</div>
-                    <div className="text-medium-gray text-xs lg:text-sm contact-value break-words">{info.value}</div>
+                  <div className="flex-1 min-w-0">
+                    <div className="font-semibold text-charcoal text-sm sm:text-base lg:text-lg mb-0.5 sm:mb-1">
+                      {info.title}
+                    </div>
+                    <div className="text-medium-gray text-xs sm:text-sm break-words">
+                      {info.value}
+                    </div>
                   </div>
+                  <FaArrowRight className="text-gray-400 group-hover:text-[#00786f] group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" size={14} />
                 </a>
               ))}
             </div>
@@ -240,11 +252,12 @@ const Contact = () => {
 
           {/* Contact Form - Right Side */}
           <div className="lg:col-span-7 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-            <div className="bg-white/80 backdrop-blur-sm horizontal-2xl p-8 border border-light-gray/50">
+            <div className="bg-white/80 backdrop-blur-sm horizontal-2xl p-5 sm:p-6 md:p-8 border border-light-gray/30 shadow-lg">
               <form onSubmit={handleSubmit}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                {/* Name and Email Row */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-4 sm:mb-5">
                   <div>
-                    <label className="block text-sm font-semibold text-charcoal mb-3">
+                    <label className="block text-xs sm:text-sm font-semibold text-charcoal mb-2">
                       Full Name *
                     </label>
                     <input
@@ -254,12 +267,12 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       disabled={loading}
-                      className="w-full px-4 py-3 bg-white border border-light-gray focus:border-[#00786f] focus:outline-none focus:ring-0 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-white border border-light-gray horizontal-lg focus:border-[#00786f] focus:outline-none focus:ring-2 focus:ring-[#00786f]/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
                       placeholder="Your full name"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-charcoal mb-3">
+                    <label className="block text-xs sm:text-sm font-semibold text-charcoal mb-2">
                       Email Address *
                     </label>
                     <input
@@ -269,15 +282,16 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       disabled={loading}
-                      className="w-full px-4 py-3 bg-white border border-light-gray focus:border-[#00786f] focus:outline-none focus:ring-0 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-white border border-light-gray horizontal-lg focus:border-[#00786f] focus:outline-none focus:ring-2 focus:ring-[#00786f]/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
                       placeholder="your.email@example.com"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                {/* Phone and Subject Row */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-4 sm:mb-5">
                   <div>
-                    <label className="block text-sm font-semibold text-charcoal mb-3">
+                    <label className="block text-xs sm:text-sm font-semibold text-charcoal mb-2">
                       Phone Number *
                     </label>
                     <input
@@ -287,12 +301,12 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       disabled={loading}
-                      className="w-full px-4 py-3 bg-white border border-light-gray focus:border-[#00786f] focus:outline-none focus:ring-0 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-white border border-light-gray horizontal-lg focus:border-[#00786f] focus:outline-none focus:ring-2 focus:ring-[#00786f]/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
                       placeholder="+91 9876543210"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-charcoal mb-3">
+                    <label className="block text-xs sm:text-sm font-semibold text-charcoal mb-2">
                       Subject *
                     </label>
                     <input
@@ -302,14 +316,15 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       disabled={loading}
-                      className="w-full px-4 py-3 bg-white border border-light-gray focus:border-[#00786f] focus:outline-none focus:ring-0 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-white border border-light-gray horizontal-lg focus:border-[#00786f] focus:outline-none focus:ring-2 focus:ring-[#00786f]/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
                       placeholder="Project inquiry"
                     />
                   </div>
                 </div>
 
-                <div className="mb-6">
-                  <label className="block text-sm font-semibold text-charcoal mb-3">
+                {/* Message Field */}
+                <div className="mb-4 sm:mb-5">
+                  <label className="block text-xs sm:text-sm font-semibold text-charcoal mb-2">
                     Message *
                   </label>
                   <textarea
@@ -317,60 +332,68 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    rows={6}
+                    rows={4}
                     disabled={loading}
-                    className="w-full px-4 py-3 bg-white border border-light-gray focus:border-[#00786f] focus:outline-none focus:ring-0 transition-colors duration-300 resize-none disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-white border border-light-gray horizontal-lg focus:border-[#00786f] focus:outline-none focus:ring-2 focus:ring-[#00786f]/20 transition-all duration-300 resize-none disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
                     placeholder="Tell me about your project requirements, timeline, and budget..."
                   ></textarea>
                 </div>
 
                 {/* Retry Status */}
                 {retryStatus && (
-                  <div className="mb-6">
-                    <div className="bg-[#00786f]/5 border border-[#00786f]/20 horizontal-xl p-4 flex items-center gap-3">
-                      <FaSpinner className="animate-spin text-[#00786f] flex-shrink-0" />
-                      <span className="text-sm text-[#00786f] font-medium">{retryStatus}</span>
+                  <div className="mb-4 sm:mb-5">
+                    <div className="bg-[#00786f]/5 border border-[#00786f]/20 horizontal-lg p-3 sm:p-4 flex items-center gap-2 sm:gap-3">
+                      <FaSpinner className="animate-spin text-[#00786f] flex-shrink-0" size={16} />
+                      <span className="text-xs sm:text-sm text-[#00786f] font-medium">{retryStatus}</span>
                     </div>
                   </div>
                 )}
 
-                {/* Send Message Note */}
-                <div className="mb-6 text-center">
-                  <div className="mb-6 text-center">
-                    <p className="text-sm text-medium-gray">
-                      <FaWhatsapp className="text-[#00786f] text-lg inline mr-1" /> Your message will be sent directly to Ritesh's WhatsApp with instant notification
+                {/* WhatsApp Note */}
+                <div className="mb-5 sm:mb-6 text-center">
+                  <div className="inline-flex items-center gap-2 bg-gray-50 px-3 sm:px-4 py-2 horizontal-full">
+                    <FaWhatsapp className="text-[#25D366] text-sm sm:text-base" />
+                    <p className="text-xs sm:text-sm text-medium-gray">
+                      Message will be sent directly to WhatsApp with instant notification
                     </p>
                   </div>
                 </div>
 
+                {/* Submit Button */}
                 <button
                   type="submit"
                   disabled={loading}
-                  className="btn-primary px-4 md:px-8 py-3 md:py-4 horizontal-full font-semibold text-sm md:text-lg flex items-center gap-2 md:gap-3 smooth-transition group disabled:opacity-50 w-full md:w-auto justify-center disabled:cursor-not-allowed"
-                  style={{ background: '#00786f', borderColor: '#00786f' }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = '#00635b'
-                    e.currentTarget.style.borderColor = '#00635b'
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = '#00786f'
-                    e.currentTarget.style.borderColor = '#00786f'
-                  }}
+                  className="w-full bg-[#00786f] text-white px-5 sm:px-6 md:px-8 py-3 sm:py-4 horizontal-lg font-semibold text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:bg-[#00635b] hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed group"
                 >
                   {loading && <FaSpinner className="animate-spin" />}
-                  <span className="block md:hidden">
-                    {loading ? 'Sending...' : 'Send to Ritesh'}
+                  <span>
+                    {loading ? 'Sending Message...' : 'Send Direct Message'}
                   </span>
-                  <span className="hidden md:block">
-                    {loading ? 'Sending Direct Message...' : 'Send Direct Message to Ritesh'}
-                  </span>
-                  {!loading && <FaArrowRight className="group-hover:translate-x-1 transition-transform duration-300 text-sm md:text-base" />}
+                  {!loading && <FaArrowRight className="group-hover:translate-x-1 transition-transform duration-300" size={16} />}
                 </button>
               </form>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Add keyframes for fade-in-up animation if not already in your global CSS */}
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-fade-in-up {
+          animation: fadeInUp 0.6s ease-out forwards;
+        }
+      `}</style>
     </section>
   )
 }

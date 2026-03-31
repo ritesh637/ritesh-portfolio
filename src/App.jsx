@@ -12,6 +12,7 @@ import Contact from './components/Contact'
 
 function App() {
   const [activeSection, setActiveSection] = useState('home')
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,14 +31,41 @@ function App() {
     }
 
     window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    
+    // Handle body scroll when mobile menu is open
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      document.body.style.overflow = 'unset'
+    }
+  }, [isMobileMenuOpen])
+
+  // Close mobile menu when window is resized to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024 && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false)
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [isMobileMenuOpen])
 
   return (
-    <div className="App">
-      <Navigation activeSection={activeSection} />
+    <div className="App overflow-x-hidden">
+      <Navigation 
+        activeSection={activeSection} 
+        isMobileMenuOpen={isMobileMenuOpen}
+        setIsMobileMenuOpen={setIsMobileMenuOpen}
+      />
       
-      <main>
+      <main className="w-full">
         <Hero />
         <About />
         <Skills />
@@ -60,9 +88,13 @@ function App() {
         theme="light"
         toastStyle={{
           fontFamily: 'Inter, sans-serif',
-          fontSize: '14px',
+          fontSize: 'clamp(12px, 4vw, 14px)',
           borderRadius: '8px',
+          maxWidth: '90vw',
+          width: 'auto',
+          minWidth: '200px',
         }}
+        className="responsive-toast"
       />
     </div>
   )

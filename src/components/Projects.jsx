@@ -58,25 +58,25 @@ const Projects = () => {
   }, [])
 
   return (
-    <section id="projects" className="py-12 bg-gray-50 min-h-screen flex items-center">
-      <div className="max-w-8xl mx-auto px-8 md:px-16 lg:px-24 w-full">
+    <section id="projects" className="py-8 sm:py-12 md:py-16 bg-gray-50 min-h-screen flex items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-24 w-full">
         {/* Section Header */}
-        <div className="text-center mb-12 animate-fade-in-up">
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-charcoal mb-6">
+        <div className="text-center mb-8 sm:mb-10 md:mb-12 animate-fade-in-up">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-charcoal mb-4 sm:mb-5 md:mb-6">
             Featured Projects
           </h2>
-          <p className="text-base md:text-lg lg:text-xl text-medium-gray leading-relaxed text-center max-w-4xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-medium-gray leading-relaxed text-center max-w-4xl mx-auto px-4 sm:px-6 md:px-8">
             A curated selection of my most impactful work, showcasing expertise across various technologies and industries.
           </p>
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16">
           {projects.map((project, index) => (
             <div
               key={project.id}
               data-project-id={project.id}
-              className={`project-card transition-all duration-700 ease-out flex flex-col h-full ${
+              className={`project-card transition-all duration-700 ease-out flex flex-col h-full horizontal-lg overflow-hidden bg-white shadow-md hover:shadow-xl ${
                 visibleProjects.includes(project.id.toString()) 
                   ? 'opacity-100 translate-y-0' 
                   : 'opacity-0 translate-y-8'
@@ -86,87 +86,88 @@ const Projects = () => {
                 transformOrigin: 'center bottom'
               }}
             >
-              {/* Project Image */}
-              <div className="project-image-container">
+              {/* Project Image Container - Responsive aspect ratio */}
+              <div className="relative w-full pt-[56.25%] overflow-hidden bg-gray-200 group">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="project-image"
+                  className="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
                 
-                {/* Hover Overlay */}
-                <div className="project-overlay">
+                {/* Hover Overlay - Responsive touch targets */}
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 sm:gap-4 px-4">
                   <a
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="overlay-btn transform hover:scale-105"
+                    className="flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 bg-white text-gray-900 horizontal-lg font-medium text-xs sm:text-sm transform hover:scale-105 transition-all duration-200 min-h-[44px] active:scale-95"
                   >
-                    <FaExternalLinkAlt size={14} />
+                    <FaExternalLinkAlt size={12} className="sm:w-[14px] sm:h-[14px]" />
                     View Live
                   </a>
                   <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="overlay-btn transform hover:scale-105"
+                    className="flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 bg-white text-gray-900 horizontal-lg font-medium text-xs sm:text-sm transform hover:scale-105 transition-all duration-200 min-h-[44px] active:scale-95"
                   >
-                    <FaGithub size={14} />
+                    <FaGithub size={12} className="sm:w-[14px] sm:h-[14px]" />
                     View Code
                   </a>
                 </div>
               </div>
 
-              {/* Project Content */}
-              <div className="p-6 flex flex-col flex-grow">
+              {/* Project Content - Responsive padding */}
+              <div className="p-4 sm:p-5 md:p-6 flex flex-col flex-grow">
                 {/* Project Title */}
-                <h3 className="text-xl font-bold text-charcoal mb-3 leading-tight font-serif">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-charcoal mb-2 sm:mb-3 leading-tight font-serif">
                   {project.title}
                 </h3>
 
-                {/* Project Description */}
-                <p className="text-sm text-medium-gray leading-relaxed mb-4 flex-grow">
+                {/* Project Description - Responsive text size */}
+                <p className="text-xs sm:text-sm md:text-base text-medium-gray leading-relaxed mb-3 sm:mb-4 flex-grow">
                   {project.description}
                 </p>
 
                 {/* Status Badge */}
-                <div className="mb-4">
-                  <span className="inline-flex items-center px-2 py-1 horizontal-full text-xs font-semibold bg-[#00786f]/10 text-[#00786f]">
+                <div className="mb-3 sm:mb-4">
+                  <span className="inline-flex items-center px-2 sm:px-2.5 py-1 text-xs font-semibold bg-[#00786f]/10 text-[#00786f] horizontal">
                     {project.status}
                   </span>
                 </div>
 
-                {/* Technology Tags */}
-                <div className="flex flex-wrap gap-2 mb-6">
+                {/* Technology Tags - Responsive spacing */}
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-5 md:mb-6">
                   {project.technologies.map((tech, techIndex) => (
                     <span 
                       key={techIndex} 
-                      className="tech-tag transition-colors duration-200 hover:bg-[#00786f] hover:text-white"
+                      className="tech-tag px-2 sm:px-2.5 py-0.5 sm:py-1 text-xs sm:text-sm bg-gray-100 text-gray-700 horizontal transition-colors duration-200 hover:bg-[#00786f] hover:text-white cursor-default"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
 
-                {/* Action Buttons - Now pushed to bottom */}
-                <div className="flex items-center justify-between pt-3 border-t border-gray-100 mt-auto">
+                {/* Action Buttons - Responsive touch targets */}
+                <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-gray-100 mt-auto">
                   <a
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#00786f] hover:text-[#00635b] transition-all duration-200 font-bold text-sm flex items-center gap-2 transform hover:translate-x-1"
+                    className="text-[#00786f] hover:text-[#00635b] transition-all duration-200 font-semibold text-xs sm:text-sm flex items-center gap-2 transform hover:translate-x-1 min-h-[44px] sm:min-h-[auto] active:scale-95"
                   >
                     View Project
-                    <FaExternalLinkAlt size={12} />
+                    <FaExternalLinkAlt size={11} className="sm:w-[12px] sm:h-[12px]" />
                   </a>
                   <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-medium-gray hover:text-[#00786f] transition-all duration-200 transform hover:scale-110"
+                    className="text-medium-gray hover:text-[#00786f] transition-all duration-200 transform hover:scale-110 p-2 -m-2 active:scale-95"
+                    aria-label="View GitHub repository"
                   >
-                    <FaGithub size={20} />
+                    <FaGithub size={18} className="sm:w-[20px] sm:h-[20px]" />
                   </a>
                 </div>
               </div>
