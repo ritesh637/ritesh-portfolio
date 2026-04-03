@@ -41,7 +41,7 @@ const Projects = () => {
         "Cross-Browser Compatibility",
       ],
       status: "Completed",
-      github: "",
+      github: "https://github.com/ritesh637/Here4Trip-Travel-Booking-Platform-UI",
       demo: "https://here4trip.com/",
     },
     {
@@ -60,7 +60,7 @@ const Projects = () => {
         "User Interface Development",
       ],
       status: "Completed",
-      github: "",
+      github: "https://github.com/ritesh637/Dasu-Tours-Tourism-Website",
       demo: "https://dasutours.com/",
     },
     {
@@ -85,7 +85,7 @@ const Projects = () => {
         "User Interface Development",
       ],
       status: "Completed",
-      github: "",
+      github: "https://github.com/ritesh637/Bhati-Desert-Camp-Tourism",
       demo: "https://www.bhatidesertcampsam.com/",
     },
     {
@@ -131,7 +131,7 @@ const Projects = () => {
         "Frontend Development",
       ],
       status: "Completed",
-      github: "",
+      github: "https://github.com/ritesh637/Institute-of-Drone-Education-and-Aerospace-IDEAAS-Website",
       demo: "https://ideaas-drone.vercel.app/",
     },
   ];
