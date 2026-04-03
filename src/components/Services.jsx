@@ -77,7 +77,7 @@ const Services = () => {
           {servicesData.map((service, index) => (
             <div 
               key={index} 
-              className="bg-white horizontal-xl p-5 sm:p-6 md:p-7 lg:p-8 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] hover:shadow-lg transition-all duration-300 relative flex flex-col border-b-[3px] border-[#00786f] group hover:-translate-y-1"
+              className="bg-white horizontal-xl p-5 sm:p-6 md:p-7 lg:p-8 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] hover:shadow-lg transition-all duration-300 relative flex flex-col border-b-[4px] border-[#17ded0] group hover:-translate-y-1"
             >
               {service.popular && (
                 <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-red-500 text-white text-[8px] sm:text-[10px] uppercase font-bold tracking-wider px-2 py-1 sm:px-3 sm:py-1.5 horizontal-full z-10">

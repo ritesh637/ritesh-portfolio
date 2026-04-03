@@ -47,11 +47,11 @@ const Skills = () => {
           <div className="w-20 sm:w-24 h-1 bg-[#00786f] mx-auto mb-6 sm:mb-8"></div>
           {/* Mobile text - shorter version with smaller font */}
           <p className="block md:hidden text-sm sm:text-base text-medium-gray max-w-3xl mx-auto leading-relaxed px-4">
-            Tools I use to build amazing projects.
+            Technologies I use to build modern web applications.
           </p>
           {/* Tablet/Desktop text - full version */}
           <p className="hidden md:block text-base lg:text-xl text-medium-gray max-w-3xl mx-auto leading-relaxed">
-            Technologies and tools I use to bring ideas to life.
+            A showcase of the technologies, tools, and expertise I use to design and develop scalable, high-performance web applications.
           </p>
         </div>
 

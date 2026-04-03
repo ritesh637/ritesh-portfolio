@@ -134,7 +134,7 @@ body {
 /* PROJECT CARDS */
 .project-card {
   background: #ffffff;
-  border-radius: 12px;
+  border-radius: 0px; 
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease-in-out;
   overflow: hidden;
