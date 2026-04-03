@@ -5,14 +5,14 @@ const Certificates = () => {
   const [isVisible, setIsVisible] = useState(false)
 
   const certificates = [
-    'https://media-content.ccbp.in/certificates/share/IIYBIHSQAD.png',
-    'https://media-content.ccbp.in/certificates/share/NQUYIYCZTR.png',
-    'https://media-content.ccbp.in/certificates/share/EFZNPGPJYM.png',
-    'https://media-content.ccbp.in/certificates/share/AUOMVYSKJS.png',
-    'https://media-content.ccbp.in/certificates/share/DWLGKLFLZI.png',
-    'https://media-content.ccbp.in/certificates/share/CCKZUQZLAL.png',
-    'https://media-content.ccbp.in/certificates/share/NHYVZKECZO.png',
-    'https://media-content.ccbp.in/certificates/share/GJYQQMZAVH.png'
+    'https://res.cloudinary.com/deu6avikv/image/upload/v1775242652/Customer_feedback_for_team1_a7gpgs.png',
+    'https://res.cloudinary.com/deu6avikv/image/upload/v1775242652/Customer_feedback_via_WhatsApp_message_vwofnn.png',
+    'https://res.cloudinary.com/deu6avikv/image/upload/v1775242652/Customer_feedback_for_Webhouse_India_nxaocc.png',
+    'https://res.cloudinary.com/deu6avikv/image/upload/v1775242651/Forwarded_customer_feedback_for_BESPL.IN_o3iyfi.png',
+    'https://res.cloudinary.com/deu6avikv/image/upload/v1775242652/Customer_feedback_for_team_iqk0ou.png',
+    'https://res.cloudinary.com/deu6avikv/image/upload/v1775243427/Forwarded_customer_feedback_for_TechNova_stnffl.png',
+    'https://res.cloudinary.com/deu6avikv/image/upload/v1775242651/Testimonial_for_Sunil_Sound_Service_v2fyld.png',
+    'https://res.cloudinary.com/deu6avikv/image/upload/v1775243700/Customer_feedback_for_BrightMark_Urban_and_CodeCrafters_yqgmci.png'
   ]
 
   // Intersection Observer for animations
@@ -53,11 +53,11 @@ const Certificates = () => {
         {/* Section Header */}
         <div className={`text-center mb-10 sm:mb-12 md:mb-16 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-charcoal mb-4 sm:mb-6 leading-tight">
-            Certifications
+            Client <span className="text-[#00786f]">Testimonials</span>
           </h2>
           <div className="w-20 sm:w-24 h-1 bg-[#00786f] mx-auto mb-6 sm:mb-8"></div>
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-medium-gray max-w-2xl mx-auto px-4">
-            Professional certifications that showcase my commitment to continuous learning and excellence.
+            Trusted by industry leaders. Real results, genuine feedback from partners who elevated their digital presence with us.
           </p>
         </div>
 

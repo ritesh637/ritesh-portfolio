@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { FaHome, FaUser, FaCog, FaLaptopCode, FaEnvelope, FaCertificate, FaBriefcase, FaBars, FaTimes } from 'react-icons/fa'
+import { FaHome, FaUser, FaCog, FaLaptopCode, FaEnvelope, FaStar, FaBriefcase, FaBars, FaTimes } from 'react-icons/fa'
 
 const Navigation = ({ activeSection }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -12,7 +12,7 @@ const Navigation = ({ activeSection }) => {
     { id: 'skills', label: 'Skills', icon: FaCog },
     { id: 'services', label: 'Services', icon: FaBriefcase },
     { id: 'projects', label: 'Projects', icon: FaLaptopCode },
-    { id: 'certificates', label: 'Certificates', icon: FaCertificate },
+    { id: 'testimonials', label: 'Testimonials', icon: FaStar },
     { id: 'contact', label: 'Contact', icon: FaEnvelope },
   ]
 
