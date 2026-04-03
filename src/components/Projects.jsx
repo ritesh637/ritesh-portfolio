@@ -22,7 +22,7 @@ const Projects = () => {
         "Performance Optimization",
       ],
       status: "Completed",
-      github: "",
+      github: "https://github.com/ritesh637/Pink-City-Tour-showcase",
       demo: "https://pinkcitytour.in/",
     },
     {
@@ -107,7 +107,7 @@ const Projects = () => {
         "Node.js",
       ],
       status: "Completed",
-      github: "https://github.com/ritesh637/co-working-frontend",
+      github: "https://github.com/ritesh637/coworking-showcase",
       demo: "https://ritesh-officespace.vercel.app/",
     },
     {
