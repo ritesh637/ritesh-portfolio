@@ -41,9 +41,10 @@ const Skills = () => {
     <section id="skills" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20">
         <div className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16 animate-fade-in-up">
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-charcoal mb-4 sm:mb-5 md:mb-6">
-            Skills & Experience
+         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-charcoal mb-4 sm:mb-6 leading-tight">
+            Skills &  <span className="text-[#00786f]">Experience</span>
           </h2>
+
           <div className="w-20 sm:w-24 h-1 bg-[#00786f] mx-auto mb-6 sm:mb-8"></div>
           {/* Mobile text - shorter version with smaller font */}
           <p className="block md:hidden text-sm sm:text-base text-medium-gray max-w-3xl mx-auto leading-relaxed px-4">

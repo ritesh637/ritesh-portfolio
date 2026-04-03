@@ -12,9 +12,9 @@ const About = () => {
           
           {/* Left Content */}
           <div className="animate-fade-in-up order-1 lg:order-none">
-            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-charcoal mb-6 sm:mb-8 leading-tight">
-              About Me
-            </h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-charcoal mb-4 sm:mb-6 leading-tight">
+            About <span className="text-[#00786f]">Me</span>
+          </h2>
 
             <div className="space-y-4 sm:space-y-5 md:space-y-6 text-medium-gray leading-relaxed">
               

@@ -164,8 +164,8 @@ const Projects = () => {
       <div className="max-w-[1400px] xl:max-w-[1700px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-24 w-full">
         {/* Section Header */}
         <div className="text-center mb-8 sm:mb-10 md:mb-12 animate-fade-in-up">
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-charcoal mb-4 sm:mb-5 md:mb-6">
-            Featured Projects
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-charcoal mb-4 sm:mb-6 leading-tight">
+           Featured <span className="text-[#00786f]">Projects</span>
           </h2>
           <div className="w-20 sm:w-24 h-1 bg-[#00786f] mx-auto mb-6 sm:mb-8"></div>
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-medium-gray leading-relaxed text-center max-w-4xl mx-auto px-4 sm:px-6 md:px-8">
