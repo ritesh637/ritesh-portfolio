@@ -1,15 +1,19 @@
 import axios from 'axios'
 
+const PRODUCTION_BACKEND_URL = 'https://ritesh-portfolio-backend.onrender.com/api'
+
+const normalizeBaseUrl = (url) => url.replace(/\/+$/, '')
+
 // Support both new VITE_BACKEND_URL and legacy VITE_API_URL
 const getApiBaseUrl = () => {
   // Priority 1: New VITE_BACKEND_URL (full backend URL)
   if (import.meta.env.VITE_BACKEND_URL) {
-    return import.meta.env.VITE_BACKEND_URL
+    return normalizeBaseUrl(import.meta.env.VITE_BACKEND_URL)
   }
 
   // Priority 2: Legacy VITE_API_URL (API endpoint)
   if (import.meta.env.VITE_API_URL) {
-    return import.meta.env.VITE_API_URL
+    return normalizeBaseUrl(import.meta.env.VITE_API_URL)
   }
 
   // Priority 3: Smart dev fallback.
@@ -20,8 +24,8 @@ const getApiBaseUrl = () => {
     return `${protocol}//${hostname}:10000/api`
   }
 
-  // Priority 4: Production fallback
-  return '/api'
+  // Priority 4: Production fallback for the deployed backend.
+  return PRODUCTION_BACKEND_URL
 }
 
 const API_BASE_URL = getApiBaseUrl()
