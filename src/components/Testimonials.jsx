@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 
-const Certificates = () => {
+const Testimonials = () => {
   const [showAll, setShowAll] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
+  const [currentIndex, setCurrentIndex] = useState(0)
 
   const certificates = [
     'https://res.cloudinary.com/deu6avikv/image/upload/v1775242652/Customer_feedback_for_team1_a7gpgs.png',
@@ -28,11 +29,21 @@ const Certificates = () => {
       { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     )
 
-    const section = document.getElementById('certificates')
+    const section = document.getElementById('testimonials')
     if (section) observer.observe(section)
     
     return () => observer.disconnect()
   }, [])
+
+  // Auto slide for mobile
+  useEffect(() => {
+    if (window.innerWidth < 1024 && !showAll) {
+      const interval = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % certificates.length)
+      }, 4000)
+      return () => clearInterval(interval)
+    }
+  }, [certificates.length, showAll])
 
   const visibleCertificates = showAll ? certificates : certificates.slice(0, 4)
 
@@ -40,24 +51,36 @@ const Certificates = () => {
     window.open(certUrl, '_blank', 'noopener,noreferrer')
   }
 
+  const goToSlide = (index) => {
+    setCurrentIndex(index)
+  }
+
+  const goToPrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + certificates.length) % certificates.length)
+  }
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % certificates.length)
+  }
+
   return (
     <section 
-      id="certificates" 
-      className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-br via-white to-gray-100 relative overflow-hidden"
+      id="testimonials" 
+      className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-br via-white relative overflow-hidden"
     >
       {/* Decorative background elements */}
-      <div className="absolute top-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-gradient-to-br from-[#00786f]/5 to-transparent horizontal-full opacity-30 -translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute bottom-0 right-0 w-80 sm:w-96 h-80 sm:h-96 bg-gradient-to-tl from-[#00786f]/5 to-transparent horizontal-full opacity-30 translate-x-1/2 translate-y-1/2"></div>
+      <div className="absolute top-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-gradient-to-br from-[#00786f]/5 to-transparent rounded-full opacity-30 -translate-x-1/2 -translate-y-1/2"></div>
+      <div className="absolute bottom-0 right-0 w-80 sm:w-96 h-80 sm:h-96 bg-gradient-to-tl from-[#00786f]/5 to-transparent rounded-full opacity-30 translate-x-1/2 translate-y-1/2"></div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className={`text-center mb-10 sm:mb-12 md:mb-16 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-charcoal mb-4 sm:mb-6 leading-tight">
-            Client <span className="text-[#00786f]">Testimonials</span>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-gray-800 mb-4 sm:mb-6 leading-tight">
+            Feedback from <span className="text-[#00786f]">Real Clients</span>
           </h2>
           <div className="w-20 sm:w-24 h-1 bg-[#00786f] mx-auto mb-6 sm:mb-8"></div>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-medium-gray max-w-2xl mx-auto px-4">
-            Trusted by industry leaders. Real results, genuine feedback from partners who elevated their digital presence with us.
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto px-4">
+            Real client feedback for projects delivered by Ritesh Kumar, a freelance full stack developer trusted for responsive websites, MERN stack builds, and business-focused web solutions.
           </p>
         </div>
 
@@ -136,15 +159,6 @@ const Certificates = () => {
               .certificate-image:hover {
                 box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.2);
               }
-              
-              @media (max-width: 1024px) {
-                .certificate-item {
-                  width: 240px;
-                }
-                .certificate-image {
-                  height: 170px;
-                }
-              }
             `}</style>
             <div className="certificate-marquee">
               {/* First set */}
@@ -181,80 +195,128 @@ const Certificates = () => {
           </div>
         </div>
 
-        {/* Tablet & Mobile: Grid with Show More */}
+        {/* Mobile & Tablet: Simple Carousel */}
         <div className="lg:hidden">
-          <div className={`grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-            {visibleCertificates.map((cert, index) => (
-              <div 
-                key={index} 
-                className="certificate-card group cursor-pointer transform transition-all duration-300 hover:-translate-y-2"
-                style={{ animationDelay: `${index * 0.1}s` }}
-                onClick={() => handleCertificateClick(cert)}
-              >
-                <div className="relative horizontal-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
-                  <img 
-                    src={cert} 
-                    alt={`Certificate ${index + 1}`}
-                    className="w-full h-48 sm:h-56 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="absolute bottom-0 left-0 right-0 p-4 text-center transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                      <span className="text-white text-sm sm:text-base font-medium inline-flex items-center gap-2">
-                        View Certificate
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                      </span>
-                    </div>
+          {!showAll ? (
+            <div>
+              {/* Main Carousel */}
+              <div className="relative">
+                {/* Carousel Container */}
+                <div className="overflow-hidden px-2">
+                  <div 
+                    className="flex transition-transform duration-500 ease-out"
+                    style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+                  >
+                    {certificates.map((cert, index) => (
+                      <div 
+                        key={index}
+                        className="w-full flex-shrink-0 px-2"
+                      >
+                        <div 
+                          className="bg-white rounded-2xl overflow-hidden shadow-xl cursor-pointer transform transition-all duration-300 hover:scale-105 active:scale-95"
+                          onClick={() => handleCertificateClick(cert)}
+                        >
+                          <img 
+                            src={cert} 
+                            alt={`Testimonial ${index + 1}`}
+                            className="w-full h-auto min-h-[400px] object-contain bg-gray-50"
+                            loading="lazy"
+                          />
+                          <div className="p-4 text-center border-t border-gray-100">
+                            <p className="text-sm text-gray-600 font-medium">
+                              👆 Tap to view full feedback
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
 
-          {/* Show More/Less Button */}
-          {certificates.length > 4 && (
-            <div className="text-center mt-8 sm:mt-10 md:mt-12">
-              <button
-                onClick={() => setShowAll(!showAll)}
-                className="group relative px-6 sm:px-8 md:px-10 py-3 sm:py-4 horizontal-lg font-medium text-sm sm:text-base transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg overflow-hidden"
-                style={{ 
-                  background: '#00786f', 
-                  border: 'none',
-                  color: 'white'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = '#00635b'
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = '#00786f'
-                }}
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  {showAll ? (
-                    <>
-                      Show Less
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-                      </svg>
-                    </>
-                  ) : (
-                    <>
-                      View All {certificates.length} Certificates
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </>
-                  )}
-                </span>
-              </button>
+                {/* Navigation Arrows */}
+                <button
+                  onClick={goToPrev}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-r-xl p-2 shadow-lg transition-all duration-300"
+                  aria-label="Previous"
+                >
+                  <svg className="w-6 h-6 text-[#00786f]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button
+                  onClick={goToNext}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-l-xl p-2 shadow-lg transition-all duration-300"
+                  aria-label="Next"
+                >
+                  <svg className="w-6 h-6 text-[#00786f]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+
+                {/* Dots Indicator */}
+                <div className="flex justify-center gap-2 mt-6">
+                  {certificates.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => goToSlide(idx)}
+                      className={`transition-all duration-300 rounded-full ${
+                        currentIndex === idx
+                          ? 'w-8 h-2 bg-[#00786f]'
+                          : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
+                      }`}
+                      aria-label={`Go to testimonial ${idx + 1}`}
+                    />
+                  ))}
+                </div>
+
+                {/* View All Button */}
+                <div className="text-center mt-8">
+                  <button
+                    onClick={() => setShowAll(true)}
+                    className="px-8 py-3 rounded-lg font-medium text-white bg-[#00786f] hover:bg-[#00635b] transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg"
+                  >
+                    View All {certificates.length} Testimonials
+                  </button>
+                </div>
+              </div>
             </div>
+          ) : (
+            <>
+              {/* Grid View for Show All */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {visibleCertificates.map((cert, index) => (
+                  <div 
+                    key={index}
+                    className="bg-white rounded-xl overflow-hidden shadow-md cursor-pointer transform transition-all duration-300 hover:-translate-y-2"
+                    onClick={() => handleCertificateClick(cert)}
+                  >
+                    <img 
+                      src={cert} 
+                      alt={`Testimonial ${index + 1}`}
+                      className="w-full h-auto object-contain bg-gray-50"
+                      loading="lazy"
+                    />
+                    <div className="p-3 text-center border-t border-gray-100">
+                      <p className="text-xs text-gray-600">Tap to view</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Show Less Button */}
+              <div className="text-center mt-8">
+                <button
+                  onClick={() => setShowAll(false)}
+                  className="px-8 py-3 rounded-lg font-medium text-white bg-[#00786f] hover:bg-[#00635b] transition-all duration-300"
+                >
+                  Show Less
+                </button>
+              </div>
+            </>
           )}
         </div>
       </div>
 
-      {/* Add keyframes for fade-in-up animation if not already in your global CSS */}
       <style jsx>{`
         @keyframes fadeInUp {
           from {
@@ -275,4 +337,4 @@ const Certificates = () => {
   )
 }
 
-export default Certificates
+export default Testimonials

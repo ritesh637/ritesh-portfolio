@@ -12,8 +12,16 @@ const getApiBaseUrl = () => {
     return import.meta.env.VITE_API_URL
   }
 
-  // Priority 3: Default fallback
-  return import.meta.env.PROD ? '/api' : 'http://localhost:10000/api'
+  // Priority 3: Smart dev fallback.
+  // On mobile devices connected through the LAN, "localhost" points to the phone,
+  // not the laptop running the backend. Reuse the current hostname with backend port 10000.
+  if (!import.meta.env.PROD && typeof window !== 'undefined') {
+    const { protocol, hostname } = window.location
+    return `${protocol}//${hostname}:10000/api`
+  }
+
+  // Priority 4: Production fallback
+  return '/api'
 }
 
 const API_BASE_URL = getApiBaseUrl()

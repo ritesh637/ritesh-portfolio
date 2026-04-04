@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FaEnvelope, FaMapMarkerAlt, FaWhatsapp, FaArrowRight, FaLinkedin, FaSpinner } from 'react-icons/fa'
+import { FaEnvelope, FaMapMarkerAlt, FaArrowRight, FaLinkedin, FaSpinner } from 'react-icons/fa'
 import { toast } from 'react-toastify'
 import { submitContact } from '../utils/api'
 
@@ -12,7 +12,7 @@ const Contact = () => {
     message: ''
   })
   const [loading, setLoading] = useState(false)
-  const [retryStatus, setRetryStatus] = useState('')
+ 
 
   // Phone number formatting function
   const formatPhoneNumber = (value) => {
@@ -69,113 +69,56 @@ const Contact = () => {
     }
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    
-    // Validate phone number before submission
-    if (!validatePhoneNumber(formData.phone)) {
-      toast.error('Please enter a valid Indian phone number (10 digits starting with 6-9)', {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      })
-      return
-    }
-    
-    setLoading(true)
-    setRetryStatus('')
+const handleSubmit = async (e) => {
+  e.preventDefault()
 
-    try {
-      // Ensure phone number is in correct format for backend
-      const submissionData = {
-        ...formData,
-        phone: formData.phone.startsWith('+') ? formData.phone : `+91${formData.phone.replace(/^91/, '')}`
-      }
-
-      // Show initial attempt toast
-      const loadingToast = toast.loading('Sending your message...', {
-        position: "top-center",
-      })
-      
-      const response = await submitContact(submissionData, (attemptNumber, error) => {
-        // Update retry status for user feedback
-        if (attemptNumber === 1) {
-          setRetryStatus('Server is waking up, please wait...')
-          toast.update(loadingToast, {
-            render: 'Server is waking up, please wait...',
-            type: "info",
-            isLoading: true,
-            autoClose: false,
-          })
-        } else if (attemptNumber <= 3) {
-          setRetryStatus(`Retrying... (attempt ${attemptNumber + 1})`)
-          toast.update(loadingToast, {
-            render: `Retrying... (attempt ${attemptNumber + 1})`,
-            type: "info",
-            isLoading: true,
-            autoClose: false,
-          })
-        } else {
-          setRetryStatus(`Still trying... (attempt ${attemptNumber + 1})`)
-          toast.update(loadingToast, {
-            render: `Still trying... (attempt ${attemptNumber + 1})`,
-            type: "info",
-            isLoading: true,
-            autoClose: false,
-          })
-        }
-      })
-
-      toast.dismiss(loadingToast)
-      
-      if (response.success) {
-        toast.success(`Thank you ${formData.name}! Your message has been sent successfully. I will get back to you soon!`, {
-          position: "top-center",
-          autoClose: 6000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        })
-        
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          subject: '',
-          message: ''
-        })
-      } else {
-        toast.error('Something went wrong. Please try again.')
-      }
-    } catch (error) {
-      toast.dismiss()
-      toast.error(error.message || 'Failed to send message. Please try again.', {
-        position: "top-center",
-        autoClose: 8000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      })
-      console.error('Contact form error:', error)
-    }
-
-    setLoading(false)
-    setRetryStatus('')
+  if (!validatePhoneNumber(formData.phone)) {
+    toast.error('Please enter a valid Indian phone number')
+    return
   }
 
+  setLoading(true)
+
+  try {
+    const submissionData = {
+      ...formData,
+      phone: formData.phone.startsWith('+')
+        ? formData.phone
+        : `+91${formData.phone.replace(/^91/, '')}`
+    }
+
+    const response = await submitContact(submissionData)
+
+    if (response?.success) {
+  const userName = formData?.name?.trim() || "there";
+
+  toast.success(`Thank you ${userName}! We’ll get back to you shortly.`);
+
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: ''
+      })
+
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+
+    } else {
+      toast.error('❌ Something went wrong')
+    }
+
+  } catch (error) {
+    toast.error(
+      error.message || '❌ Something went wrong. Please try again later.'
+    )
+    console.error(error)
+  } finally {
+    setLoading(false)
+  }
+}
+
   const contactInfo = [
-    {
-      icon: <FaWhatsapp size={18} />,
-      title: 'WhatsApp',
-      value: '+91 7707076831',
-      link: 'https://wa.me/917077076831',
-      color: '#25D366'
-    },
     {
       icon: <FaEnvelope size={18} />,
       title: 'Email',
@@ -213,7 +156,7 @@ const Contact = () => {
           </h2>
           <div className="w-20 sm:w-24 h-1 bg-[#00786f] mx-auto mb-4 sm:mb-6 md:mb-8"></div>
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-medium-gray max-w-2xl mx-auto px-4 leading-relaxed">
-            Have a project in mind? I'd love to hear about it.
+            Looking to hire a freelance web developer, MERN stack developer, or React Node.js developer in India? Share your project details and I will reply with the right development approach, timeline, and next steps.
           </p>
         </div>
 
@@ -339,22 +282,11 @@ const Contact = () => {
                   ></textarea>
                 </div>
 
-                {/* Retry Status */}
-                {retryStatus && (
-                  <div className="mb-4 sm:mb-5">
-                    <div className="bg-[#00786f]/5 border border-[#00786f]/20 horizontal-lg p-3 sm:p-4 flex items-center gap-2 sm:gap-3">
-                      <FaSpinner className="animate-spin text-[#00786f] flex-shrink-0" size={16} />
-                      <span className="text-xs sm:text-sm text-[#00786f] font-medium">{retryStatus}</span>
-                    </div>
-                  </div>
-                )}
-
-                {/* WhatsApp Note */}
+                {/* Response note */}
                 <div className="mb-5 sm:mb-6 text-center">
                   <div className="inline-flex items-center gap-2 bg-gray-50 px-3 sm:px-4 py-2 horizontal-full">
-                    <FaWhatsapp className="text-[#25D366] text-sm sm:text-base" />
                     <p className="text-xs sm:text-sm text-medium-gray">
-                      Message will be sent directly to WhatsApp with instant notification
+                      Your inquiry is saved securely and sent directly to my email for a prompt response
                     </p>
                   </div>
                 </div>

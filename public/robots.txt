@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ritesh-portfolio-2026.vercel.app/sitemap.xml

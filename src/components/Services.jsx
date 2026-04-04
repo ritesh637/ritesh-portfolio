@@ -4,7 +4,7 @@ import { FiCode, FiDatabase, FiMonitor, FiZap, FiShoppingCart, FiLayout } from '
 const servicesData = [
   {
     title: 'Front-End Development',
-    description: 'Crafting responsive and interactive user interfaces using HTML, CSS, and JavaScript, with a focus on modern frameworks like Bootstrap and TailwindCSS. Expertise in ReactJS for building dynamic single-page applications.',
+    description: 'Responsive frontend development services for businesses that need a freelance React developer to build fast landing pages, dashboards, and conversion-focused interfaces with modern UI systems.',
     icon: <FiCode className="text-[#00786f] text-xl sm:text-2xl" />,
     iconBg: 'bg-[#00786f]/10',
     popular: false,
@@ -13,7 +13,7 @@ const servicesData = [
   },
   {
     title: 'Back-End Development',
-    description: 'Developing robust server-side applications using Node.js and Express.js, alongside traditional technologies like PHP and MySQL. Skilled in creating RESTful APIs and managing databases.',
+    description: 'Backend development with Node.js, Express.js, MongoDB, and SQL for secure APIs, business logic, payment flows, authentication, and scalable server architecture.',
     icon: <FiDatabase className="text-[#00786f] text-xl sm:text-2xl" />,
     iconBg: 'bg-[#00786f]/10',
     popular: false,
@@ -22,7 +22,7 @@ const servicesData = [
   },
   {
     title: 'Full-Stack Development',
-    description: 'Offering comprehensive web solutions by handling both front-end and back-end development, leveraging the MERN stack for seamless integration and efficient development.',
+    description: 'End-to-end MERN stack development for startups, founders, and agencies looking to hire a full stack developer for custom web apps, portals, dashboards, and SaaS products.',
     icon: <FiMonitor className="text-[#00786f] text-xl sm:text-2xl" />,
     iconBg: 'bg-[#00786f]/10',
     popular: true,
@@ -31,7 +31,7 @@ const servicesData = [
   },
   {
     title: 'Website Optimization',
-    description: 'Enhancing website performance for faster loading times and better user engagement, alongside implementing SEO best practices to improve visibility.',
+    description: 'Website performance and SEO optimization services to improve speed, Core Web Vitals, crawlability, content quality, and organic visibility in Google search.',
     icon: <FiZap className="text-[#00786f] text-xl sm:text-2xl" />,
     iconBg: 'bg-[#00786f]/10',
     popular: false,
@@ -40,7 +40,7 @@ const servicesData = [
   },
   {
     title: 'E-commerce Development',
-    description: 'Developing and setting up online stores, integrating secure payment gateways, and ensuring a smooth shopping experience for customers.',
+    description: 'E-commerce website development with secure checkout, payment gateway integration, product flows, and mobile-friendly shopping experiences built for growth.',
     icon: <FiShoppingCart className="text-[#00786f] text-xl sm:text-2xl" />,
     iconBg: 'bg-[#00786f]/10',
     popular: false,
@@ -49,7 +49,7 @@ const servicesData = [
   },
   {
     title: 'Custom Web Application Development',
-    description: 'Developing tailor-made web applications based on specific business needs, including dashboards, admin panels, and interactive tools with a focus on scalability and usability.',
+    description: 'Custom web application development for companies that need tailored dashboards, admin panels, booking systems, internal tools, and scalable business platforms.',
     icon: <FiLayout className="text-[#00786f] text-xl sm:text-2xl" />,
     iconBg: 'bg-[#00786f]/10',
     popular: false,
@@ -68,8 +68,7 @@ const Services = () => {
           </h2>
           <div className="w-20 sm:w-24 h-1 bg-[#00786f] mx-auto mb-6 sm:mb-8"></div>
           <p className="text-sm sm:text-base text-medium-gray max-w-2xl mx-auto px-4 sm:px-6">
-            I provide end-to-end development services, from designing responsive UIs to 
-            building scalable backends and deploying production-ready web applications.
+            I provide freelance web development services in India and remotely worldwide, from responsive React frontends to scalable Node.js backends and production-ready MERN stack applications.
           </p>
         </div>
 
