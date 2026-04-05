@@ -12,111 +12,101 @@ const Contact = () => {
     message: ''
   })
   const [loading, setLoading] = useState(false)
- 
 
-  // Phone number formatting function
   const formatPhoneNumber = (value) => {
-    // Remove all non-numeric characters except +
     const cleaned = value.replace(/[^\d+]/g, '')
-    
-    // If it starts with +91, keep it as is
+
     if (cleaned.startsWith('+91')) {
       return cleaned
     }
-    
-    // If it starts with 91 and is longer than 10 digits, add +
+
     if (cleaned.startsWith('91') && cleaned.length > 10) {
-      return '+' + cleaned
+      return `+${cleaned}`
     }
-    
-    // If it's a 10-digit number and doesn't start with +91, keep as is
+
     if (cleaned.length === 10 && !cleaned.startsWith('91')) {
       return cleaned
     }
-    
+
     return cleaned
   }
 
-  // Phone number validation function
   const validatePhoneNumber = (phone) => {
-    // Remove all non-numeric characters except +
     const cleaned = phone.replace(/[^\d+]/g, '')
-    
-    // Check for valid Indian phone number patterns
+
     const patterns = [
-      /^\+91[6-9]\d{9}$/, // +91 followed by 10 digits starting with 6-9
-      /^91[6-9]\d{9}$/,   // 91 followed by 10 digits starting with 6-9
-      /^[6-9]\d{9}$/      // 10 digits starting with 6-9
+      /^\+91[6-9]\d{9}$/,
+      /^91[6-9]\d{9}$/,
+      /^[6-9]\d{9}$/
     ]
-    
-    return patterns.some(pattern => pattern.test(cleaned))
+
+    return patterns.some((pattern) => pattern.test(cleaned))
   }
 
   const handleChange = (e) => {
     const { name, value } = e.target
-    
+
     if (name === 'phone') {
-      const formattedPhone = formatPhoneNumber(value)
       setFormData({
         ...formData,
-        [name]: formattedPhone
+        [name]: formatPhoneNumber(value)
       })
-    } else {
-      setFormData({
-        ...formData,
-        [name]: value
-      })
+      return
     }
-  }
 
-const handleSubmit = async (e) => {
-  e.preventDefault()
-
-  if (!validatePhoneNumber(formData.phone)) {
-    toast.error('Please enter a valid Indian phone number')
-    return
-  }
-
-  setLoading(true)
-
-  try {
-    const submissionData = {
+    setFormData({
       ...formData,
-      phone: formData.phone.startsWith('+')
-        ? formData.phone
-        : `+91${formData.phone.replace(/^91/, '')}`
-    }
-
-    const response = await submitContact(submissionData)
-
-    if (response?.success) {
-  const userName = formData?.name?.trim() || "there";
-
-  toast.success(`Thank you ${userName}! We’ll get back to you shortly.`);
-
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: ''
-      })
-
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-
-    } else {
-      toast.error('❌ Something went wrong')
-    }
-
-  } catch (error) {
-    toast.error(
-      error.message || '❌ Something went wrong. Please try again later.'
-    )
-    console.error(error)
-  } finally {
-    setLoading(false)
+      [name]: value
+    })
   }
-}
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    if (!validatePhoneNumber(formData.phone)) {
+      toast.error('Please enter a valid Indian phone number')
+      return
+    }
+
+    setLoading(true)
+
+    try {
+      const submissionData = {
+        ...formData,
+        phone: formData.phone.startsWith('+')
+          ? formData.phone
+          : `+91${formData.phone.replace(/^91/, '')}`
+      }
+
+      const response = await submitContact(submissionData)
+
+      if (response?.success) {
+        const userName = formData.name.trim() || 'there'
+        const successMessage =
+          response.message || `Thank you ${userName}! We'll get back to you shortly.`
+
+        toast.success(successMessage)
+
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          subject: '',
+          message: ''
+        })
+
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+        return
+      }
+
+      toast.error('Something went wrong. Please try again.')
+    } catch (error) {
+      toast.error(error.message || 'Something went wrong. Please try again later.')
+      console.error('Contact form submit failed:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const contactInfo = [
     {
@@ -144,12 +134,10 @@ const handleSubmit = async (e) => {
 
   return (
     <section id="contact" className="py-12 sm:py-16 md:py-20 lg:py-24 pb-20 sm:pb-32 bg-pure-white relative overflow-hidden">
-      {/* Decorative background elements */}
       <div className="absolute top-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-gradient-to-br from-[#00786f]/5 to-transparent horizontal-full opacity-30 -translate-x-1/2 -translate-y-1/2"></div>
       <div className="absolute bottom-0 right-0 w-80 sm:w-96 h-80 sm:h-96 bg-gradient-to-tl from-[#00786f]/5 to-transparent horizontal-full opacity-30 translate-x-1/2 translate-y-1/2"></div>
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 relative z-10">
-        {/* Header */}
         <div className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16 animate-fade-in-up">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-charcoal mb-4 sm:mb-6 leading-tight">
             Let's Work <span className="text-[#00786f]">Together</span>
@@ -161,7 +149,6 @@ const handleSubmit = async (e) => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 md:gap-10 lg:gap-12 items-start">
-          {/* Contact Info - Left Side */}
           <div className="lg:col-span-5 animate-fade-in-up">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-4 lg:gap-5">
               {contactInfo.map((info, index) => (
@@ -173,7 +160,7 @@ const handleSubmit = async (e) => {
                   rel={info.link.startsWith('http') ? 'noopener noreferrer' : ''}
                   style={{ textDecoration: 'none' }}
                 >
-                  <div 
+                  <div
                     className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 horizontal-full flex items-center justify-center transition-all duration-300 group-hover:scale-110 flex-shrink-0"
                     style={{ backgroundColor: `${info.color}15`, color: info.color }}
                   >
@@ -193,11 +180,9 @@ const handleSubmit = async (e) => {
             </div>
           </div>
 
-          {/* Contact Form - Right Side */}
-          <div className="lg:col-span-7 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+          <div className="lg:col-span-7 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
             <div className="bg-white/80 backdrop-blur-sm horizontal-2xl p-5 sm:p-6 md:p-8 border border-light-gray/30 shadow-lg">
               <form onSubmit={handleSubmit}>
-                {/* Name and Email Row */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-4 sm:mb-5">
                   <div>
                     <label className="block text-xs sm:text-sm font-semibold text-charcoal mb-2">
@@ -231,7 +216,6 @@ const handleSubmit = async (e) => {
                   </div>
                 </div>
 
-                {/* Phone and Subject Row */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-4 sm:mb-5">
                   <div>
                     <label className="block text-xs sm:text-sm font-semibold text-charcoal mb-2">
@@ -265,7 +249,6 @@ const handleSubmit = async (e) => {
                   </div>
                 </div>
 
-                {/* Message Field */}
                 <div className="mb-4 sm:mb-5">
                   <label className="block text-xs sm:text-sm font-semibold text-charcoal mb-2">
                     Message *
@@ -282,7 +265,6 @@ const handleSubmit = async (e) => {
                   ></textarea>
                 </div>
 
-                {/* Response note */}
                 <div className="mb-5 sm:mb-6 text-center">
                   <div className="inline-flex items-center gap-2 bg-gray-50 px-3 sm:px-4 py-2 horizontal-full">
                     <p className="text-xs sm:text-sm text-medium-gray">
@@ -291,7 +273,6 @@ const handleSubmit = async (e) => {
                   </div>
                 </div>
 
-                {/* Submit Button */}
                 <button
                   type="submit"
                   disabled={loading}
@@ -299,7 +280,7 @@ const handleSubmit = async (e) => {
                 >
                   {loading && <FaSpinner className="animate-spin" />}
                   <span>
-                    {loading ? 'Sending Message...' : 'Send Direct Message'}
+                    {loading ? 'Sending Message...' : 'Send Message'}
                   </span>
                   {!loading && <FaArrowRight className="group-hover:translate-x-1 transition-transform duration-300" size={16} />}
                 </button>
@@ -309,7 +290,6 @@ const handleSubmit = async (e) => {
         </div>
       </div>
 
-      {/* Add keyframes for fade-in-up animation if not already in your global CSS */}
       <style jsx>{`
         @keyframes fadeInUp {
           from {
@@ -321,7 +301,7 @@ const handleSubmit = async (e) => {
             transform: translateY(0);
           }
         }
-        
+
         .animate-fade-in-up {
           animation: fadeInUp 0.6s ease-out forwards;
         }

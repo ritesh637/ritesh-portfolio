@@ -3,6 +3,10 @@ import axios from 'axios'
 const PRODUCTION_BACKEND_URL = 'https://ritesh-portfolio-backend.onrender.com/api'
 
 const normalizeBaseUrl = (url) => url.replace(/\/+$/, '')
+const getErrorMessage = (error) =>
+  error.response?.data?.message ||
+  error.response?.data?.error ||
+  error.message
 
 // Support both new VITE_BACKEND_URL and legacy VITE_API_URL
 const getApiBaseUrl = () => {
@@ -35,7 +39,7 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 15000, // Increased timeout for slow wake-up
+  timeout: 20000, // Render cold starts can take a bit longer in production.
 })
 
 // Request interceptor
@@ -57,7 +61,11 @@ api.interceptors.response.use(
     return response
   },
   (error) => {
-    console.error('API Error:', error.response?.data || error.message)
+    console.error('API Error:', {
+      message: getErrorMessage(error),
+      status: error.response?.status,
+      url: error.config?.baseURL ? `${error.config.baseURL}${error.config.url}` : error.config?.url,
+    })
     return Promise.reject(error)
   }
 )
@@ -105,6 +113,14 @@ export const submitContact = async (contactData, onRetry = null) => {
     // Provide user-friendly error messages
     if (error.code === 'ECONNABORTED' || error.message.includes('timeout')) {
       throw new Error('Server is taking too long to respond. Please try again later.')
+    } else if (
+      error.code === 'ERR_NETWORK' ||
+      error.message === 'Network Error' ||
+      error.message.includes('Failed to fetch')
+    ) {
+      throw new Error('Unable to connect to the server. Please try again in a moment.')
+    } else if (error.response?.status === 400) {
+      throw new Error(getErrorMessage(error) || 'Please check your form details and try again.')
     } else if (error.response?.status === 503 || error.response?.status === 502) {
       throw new Error('Server is temporarily unavailable. Please try again in a few moments.')
     } else if (error.response?.status >= 500) {
@@ -117,4 +133,5 @@ export const submitContact = async (contactData, onRetry = null) => {
   }
 }
 
+export { API_BASE_URL }
 export default api
