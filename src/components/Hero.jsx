@@ -26,8 +26,8 @@ const Hero = () => {
     try {
       // Create download link
       const link = document.createElement("a");
-      link.href = "/Ritesh_FullStack_Developer.pdf";
-      link.download = "Ritesh_FullStack_Developer.pdf";
+      link.href = "/Ritesh_Kumar_FullStack_Developer_Resume.pdf";
+      link.download = "Ritesh_Kumar_FullStack_Developer_Resume.pdf";
 
       // Simulate download time for better UX
       setTimeout(() => {
