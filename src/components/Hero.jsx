@@ -124,7 +124,7 @@ const Hero = () => {
               <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
                 <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 horizontal-full overflow-hidden shadow-lg flex-shrink-0 ring-2 ring-[#00786f]/20">
                   <img
-                    src="/ritesh.jpeg"
+                    src="/ritesh.png"
                     alt="Ritesh"
                     className="w-full h-full object-cover"
                   />
